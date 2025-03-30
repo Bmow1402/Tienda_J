@@ -1,23 +1,23 @@
-package com.tienda.service.impl;
+package com.tienda.service.Impl;
+
 import com.tienda.dao.ProductoDao;
-import java.util.List;
 import com.tienda.domain.Producto;
 import com.tienda.service.ProductoService;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-//en las interfaces no se usa esto: @service o asi 
-
 @Service
 public class ProductoServiceImpl implements ProductoService {
-@Autowired
+
+    @Autowired
     private ProductoDao productoDao;
 
     @Override
     @Transactional(readOnly = true)
     public List<Producto> getProductos(boolean activos) {
-        var lista = productoDao.findAll(); //busca un producto en especifico por su ID
+        var lista = productoDao.findAll();
         if (activos) {
             lista.removeIf(e -> !e.isActivo());
         }
@@ -28,13 +28,13 @@ public class ProductoServiceImpl implements ProductoService {
     @Transactional(readOnly = true)
     public Producto getProducto(Producto producto) {
         return productoDao.findById(producto.getIdProducto()).orElse(null);
-    } //busca un producto por id y si no lo encuentra lo pone null
+    }
 
     @Override
     @Transactional
     public void save(Producto producto) {
         productoDao.save(producto);
-    } //guarda el id del producto en la lista del producto
+    }
 
     @Override
     @Transactional
@@ -42,5 +42,12 @@ public class ProductoServiceImpl implements ProductoService {
         productoDao.delete(producto);
     }
 
-    
+    // Lista de productos con precio entre ordendados por descripción ConsultaAmpliada 
+    @Override
+    @Transactional(readOnly = true)
+
+    public List<Producto> findByPrecioBetweenOrderByDescripcion(double precioInf, double precioSup) {
+        return productoDao.findByPrecioBetweenOrderByDescripcion(precioInf,
+                precioSup);
+    }
 }
