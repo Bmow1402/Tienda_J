@@ -3,8 +3,8 @@
 
 //lo que esta en verde siempre hace referencia a las variables del HTML
 //de aca se saca lo que monstamos en las vistas, osea aqui se crea el "modifica" y esto mismo se crea en el folder de templates.producto
-package com.tienda.controller;
 
+package com.tienda.controller;
 import com.tienda.domain.Producto;
 import com.tienda.service.CategoriaService;
 import com.tienda.service.ProductoService;
