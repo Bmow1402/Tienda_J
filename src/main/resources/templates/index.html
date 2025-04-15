@@ -1,9 +1,5 @@
 <!DOCTYPE html>
-<!--
-Fragmento va a ser la plantilla  y el listado sera algo similar al index
 
-
--->
 <html xmlns="http://www.w3.org/1999/xhtml" 
       xmlns:th="http://www.thymeleaf.org">
     <head th:replace="~{layout/plantilla :: head}"> 
@@ -11,6 +7,7 @@ Fragmento va a ser la plantilla  y el listado sera algo similar al index
     </head>
     <body>
         <header th:replace="~{layout/plantilla :: header}"></header>
+        <section th:replace="~{carrito/fragmentos :: listadoProductos}"/>
         <footer th:replace="~{layout/plantilla :: footer}"></footer> 
     </body>
 </html>
